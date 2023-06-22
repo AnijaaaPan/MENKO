@@ -61,7 +61,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlueX: -0.0015
+    - _BlueX: -0.00175
     - _BlueY: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -76,7 +76,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RedX: 0.0015
+    - _RedX: 0.00175
     - _RedY: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

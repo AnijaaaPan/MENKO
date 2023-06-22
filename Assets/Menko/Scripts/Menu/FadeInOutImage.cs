@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 
 public class FadeInOutImage : MonoBehaviour
 {
@@ -19,12 +19,12 @@ public class FadeInOutImage : MonoBehaviour
 
     async void Start()
     {
-        await FadeInOut(true, 0.005f, 50);
+        await FadeInOut(true, 0.01f, 75);
     }
 
     public async Task FadeInOut(bool IsIn, float ChangeValue, int Delay)
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 40; i++)
         {
             Color.a += IsIn == true ? -ChangeValue : ChangeValue;
             if (this != null) Image.color = Color;

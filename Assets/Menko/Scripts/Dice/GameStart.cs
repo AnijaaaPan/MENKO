@@ -26,7 +26,7 @@ public class GameStart : MonoBehaviour
     public Cinemachine.CinemachineImpulseSource CinemachineImpulseSource;
 
     public CameraDice CameraDice;
-    public CameraBowl CameraBowl;
+    // public CameraBowl CameraBowl;
 
     public int Round = 1;
     public int DiceCount = 5;
@@ -62,7 +62,7 @@ public class GameStart : MonoBehaviour
 
             GameProcess.instance.InitSetDice();
             CameraDice.enabled = true;
-            CameraBowl.enabled = false;
+            // CameraBowl.enabled = false;
             CameraDice.instance.InitCameraDice();
             RandomTimeScale();
         }
@@ -164,8 +164,8 @@ public class GameStart : MonoBehaviour
 
         CameraDice.enabled = false;
         MonoFilter.enabled = false;
-        CameraBowl.enabled = true;
-        CameraBowl.instance.InitCameraBowl();
+        // CameraBowl.enabled = true;
+        // CameraBowl.instance.InitCameraBowl();
         GameProcess.instance.InitSetCameraObject(BowlObject);
 
         RollText.text = $"ROLL : {Round}";

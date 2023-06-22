@@ -18,7 +18,8 @@ public class Dice : MonoBehaviour
         {
             if (this == null) return;
 
-            if (IsGetDistance()) {
+            if (IsGetDistance())
+            {
                 gameObject.layer = 10;
                 GameProcess.instance.RemoveTarget(gameObject);
                 break;
@@ -33,24 +34,26 @@ public class Dice : MonoBehaviour
     {
         if (collision.gameObject != Bowl) return;
 
-        if (GameStart.instance.GameType == 0) {
+        if (GameStart.instance.GameType == 0)
+        {
             GameProcess.instance.InitSetDice();
             CameraDice.instance.InitCameraDice();
 
-        } else if (GameProcess.instance.IsDroping == true)
+        }
+        else if (GameProcess.instance.IsDroping == true)
         {
             Sound.instance.SoundHitToBowl();
             GameProcess.instance.IsDroping = false;
             GameStart.instance.CameraDice.enabled = false;
-            GameStart.instance.CameraBowl.enabled = true;
+            // GameStart.instance.CameraBowl.enabled = true;
             GameStart.instance.WaitType = 3;
             GameStart.instance.IsClick = false;
             if (GameStart.instance.RemainNudge != 0)
             {
                 GameStart.instance.RemainNudgeText.color = new Color(1, 1, 1);
             }
-            CameraBowl.instance.DiceOnBowl();
-            CameraBowl.instance.InitCameraBowl();
+            // CameraBowl.instance.DiceOnBowl();
+            // CameraBowl.instance.InitCameraBowl();
             GameProcess.instance.InitSetCameraObject(GameStart.instance.BowlObject);
         }
     }

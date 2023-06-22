@@ -12,8 +12,8 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
     public CanvasGroup OptionCanvas;
 
     private bool ShutOut = false;
-    private float initLeftX = -2300;
-    private float initRightX = 2300;
+    private float initLeftX = -1575;
+    private float initRightX = 1575;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -26,7 +26,6 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         if (ShutOut == true) return;
-        if (!Input.GetKeyDown(KeyCode.Escape)) return ;
 
         BackScene();
     }

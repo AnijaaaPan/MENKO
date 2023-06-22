@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class CameraBowl : MonoBehaviour
+public class CameraRing : MonoBehaviour
 {
-    public static CameraBowl instance;
+    public static CameraRing instance;
 
     public CameraMultiTarget cameraMultiTarget;
 
@@ -15,8 +15,8 @@ public class CameraBowl : MonoBehaviour
     private readonly float PitchMax = 85f;
     private readonly float YawMin = 0f;
     private readonly float YawMax = 360f;
-    private float PaddingMin = 7.55f;
-    private float PaddingMax = 20f;
+    private float PaddingMin = 7.5f;
+    private float PaddingMax = 15f;
     private float DiffPaddingMax = 0.05f;
 
     private float InitPitch = 0;
@@ -27,7 +27,7 @@ public class CameraBowl : MonoBehaviour
     private float DiffYaw = 0;
     private float DiffPadding = 0;
 
-    private readonly int IntervalTime = 10;
+    private readonly int IntervalTime = 50;
 
     private int InitCount = 0;
     private int RandomCount = 0;
@@ -37,29 +37,32 @@ public class CameraBowl : MonoBehaviour
         instance = this;
     }
 
-    async void Start()
+    private void Start()
     {
-        InitCameraBowl();
-
-        while (true)
-        {
-            if (cameraMultiTarget == null) return;
-
-            if (InitCount % RandomCount == 0)
-            {
-                InitCameraBowl();
-            }
-
-            UpdatePitch();
-            UpdateYaw();
-            UpdatePadding();
-
-            InitCount++;
-            await Task.Delay(IntervalTime);
-        }
+        InitCameraRing();
+        UpdateCamera();
     }
 
-    public void InitCameraBowl()
+    private async void UpdateCamera()
+    {
+        if (cameraMultiTarget == null) return;
+
+        if (InitCount % RandomCount == 0)
+        {
+            InitCameraRing();
+        }
+
+        UpdatePitch();
+        UpdateYaw();
+        UpdatePadding();
+
+        InitCount++;
+        await Task.Delay(IntervalTime);
+
+        UpdateCamera();
+    }
+
+    public void InitCameraRing()
     {
         MovePitch = RandomChoiceType();
         MoveYaw = RandomChoiceType();
@@ -126,7 +129,7 @@ public class CameraBowl : MonoBehaviour
         else if (cameraMultiTarget.PaddingDown <= PaddingMin) MovePadding = 1;
     }
 
-    public void DiceOnBowl()
+    public void DiceOnRing()
     {
         PaddingMin = 5f;
         PaddingMax = 10f;

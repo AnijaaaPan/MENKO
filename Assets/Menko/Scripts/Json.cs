@@ -103,7 +103,6 @@ public class Json : MonoBehaviour
         StreamReader reader = new(fs);
         string datastr = reader.ReadToEnd();
         reader.Close();
-        Debug.Log(datastr);
         return JsonUtility.FromJson<PlayerData>(datastr);
     }
 
