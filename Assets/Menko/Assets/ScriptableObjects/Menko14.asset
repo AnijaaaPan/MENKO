@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cc7edeb172559478444798c3d4dd5c, type: 3}
+  m_Name: Menko14
+  m_EditorClassIdentifier: 
+  id: 14
+  rank: 2
+  prefab: {fileID: 6601879868552390391, guid: a2df9c02e5aeb3444b47b75ba80ab355, type: 3}
+  isAutoMosaic: 0
