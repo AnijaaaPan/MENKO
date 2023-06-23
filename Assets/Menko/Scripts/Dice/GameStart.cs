@@ -180,8 +180,8 @@ public class GameStart : MonoBehaviour
         {
             BowlCanvasGroup.alpha = i * 0.1f;
 
-            string randomText = RandomPassword.Generate(DiceText.Length);
-            DiceCountText.text = randomText;
+            // string randomText = RandomPassword.Generate(DiceText.Length);
+            // DiceCountText.text = randomText;
             await Task.Delay(20);
         }
 

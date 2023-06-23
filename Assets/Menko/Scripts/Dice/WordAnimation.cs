@@ -108,8 +108,8 @@ public class WordAnimation : MonoBehaviour
         string ComboText = $"COMBO {Combo}";
         for (int i = 0; i < 60; i++)
         {
-            string randomText = RandomPassword.Generate(ComboText.Length);
-            IsComboText.SetText(i <= 5 ? randomText : ComboText);
+            // string randomText = RandomPassword.Generate(ComboText.Length);
+            // IsComboText.SetText(i <= 5 ? randomText : ComboText);
             if (TextMeshProUGUI != null) TextMeshProUGUI.fontSize -= 5;
             if (TextMeshProUGUI.fontSize <= 400 && IsChange == false)
             {
