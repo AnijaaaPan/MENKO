@@ -24,20 +24,19 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
 
     private async void BackScene()
     {
-        for (int i = 1; i <= 20; i++)
+        for (int i = 1; i <= 50; i++)
         {
             OptionZoomOut(i * -1.5f, 1 - i * 0.05f);
 
-            initLeftX += 90;
-            initRightX -= 90;
+            initLeftX += 30;
+            initRightX -= 30;
 
             Left.localPosition = new Vector3(initLeftX, 100, 0);
             Right.localPosition = new Vector3(initRightX, -100, 0);
 
-            await Task.Delay(10);
+            await Task.Delay(15);
         }
 
-        await Task.Delay(250);
         SceneManager.LoadSceneAsync("Title");
     }
 

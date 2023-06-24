@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Menkoƒf[ƒ^
 [CreateAssetMenu(fileName = "CreateMenkoData", menuName = "ScriptableObjects/CreateMenkoData")]
-public class CreateMenkoData : ScriptableObject
+public class MenkoData : ScriptableObject
 {
     [SerializeField]
     int id;
@@ -15,11 +15,16 @@ public class CreateMenkoData : ScriptableObject
     GameObject prefab;
 
     [SerializeField]
+    Material material;
+
+    [SerializeField]
     bool isAutoMosaic;
 
     public int GetId() => id;
 
     public GameObject GetPrefab() => prefab;
+
+    public Material GetMaterial() => material;
 
     public Rank GetRank() => rank;
 

@@ -64,7 +64,6 @@ public class GameStart : MonoBehaviour
             CameraDice.enabled = true;
             // CameraBowl.enabled = false;
             CameraDice.instance.InitCameraDice();
-            RandomTimeScale();
         }
 
         if (WaitType == 3 && RemainNudge != 0 && IsNudgeClick == false && Input.GetMouseButton(1))
@@ -260,18 +259,18 @@ public class GameStart : MonoBehaviour
         RemainNudgeText.color = new Color(ColorValue, ColorValue, ColorValue);
     }
 
-    private async void RandomTimeScale()
-    {
-        PlayerData PlayerData = Json.instance.Load();
-        await Task.Delay(Random.Range(200, 400));
+    //private async void RandomTimeScale()
+    //{
+    //    PlayerData PlayerData = Json.instance.Load();
+    //    await Task.Delay(Random.Range(200, 400));
 
-        float timeScale = Random.Range(0.1f, 0.5f);
-        Time.timeScale *= timeScale;
+    //    float timeScale = Random.Range(0.1f, 0.5f);
+    //    Time.timeScale *= timeScale;
 
-        Sound.instance.SoundFaa();
-        await Task.Delay(Random.Range(1500, 2000));
-        Sound.instance.SoundEffect.Stop();
+    //    Sound.instance.SoundFaa();
+    //    await Task.Delay(Random.Range(1500, 2000));
+    //    Sound.instance.SoundEffect.Stop();
 
-        Json.instance.UpdateTimeScale(PlayerData.Speed);
-    }
+    //    Json.instance.UpdateTimeScale(PlayerData.Speed);
+    //}
 }

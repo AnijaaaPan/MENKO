@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45a05ded6c3ee34d8c4c1d1db776fc1, type: 3}
+  m_Name: Menkos
+  m_EditorClassIdentifier: 
+  menkoDatas:
+  - {fileID: 11400000, guid: cb1ea7cd130263f418d81a0898f903f0, type: 2}
+  - {fileID: 11400000, guid: 6b71f966d21ed8545bbb6ab9d6c8f1c5, type: 2}
+  - {fileID: 11400000, guid: 0406a743001ab584e8cfd6005d20fc7d, type: 2}
+  - {fileID: 11400000, guid: 54722bd661d65f14d92d9b99d1328325, type: 2}
+  - {fileID: 11400000, guid: bb7c4d7dfcda02e45a19d79090d363cc, type: 2}
+  - {fileID: 11400000, guid: 558acecd7b55bd6489a663da2c9b241e, type: 2}
+  - {fileID: 11400000, guid: 35bb0cbe763685b479ed5d6b7652f126, type: 2}
+  - {fileID: 11400000, guid: 6ad7c877c150b2b4db8193b324647243, type: 2}
+  - {fileID: 11400000, guid: 908741807e2547b4d86d857d77acc001, type: 2}
+  - {fileID: 11400000, guid: 0fb400487d68fb44796c1cb0769e8bf3, type: 2}
+  - {fileID: 11400000, guid: 7041e76a99314024b97174a3e778c593, type: 2}
+  - {fileID: 11400000, guid: 44cf0474660361d4f92464f87ce19bd6, type: 2}
+  - {fileID: 11400000, guid: f591d9c9055655a4e9d04ecdf1b0cd75, type: 2}
+  - {fileID: 11400000, guid: a45f0cadaa6be3d408b2d0492aa48b88, type: 2}
+  - {fileID: 11400000, guid: c0236c584443e044d8701c9d2536dc84, type: 2}
+  - {fileID: 11400000, guid: 3520df99a42581b44add1681e59ca56c, type: 2}
+  - {fileID: 11400000, guid: 0cfef5d36c17eb64ab30c4c9b0b1ce0d, type: 2}
+  - {fileID: 11400000, guid: 8d0e9f03fb344e7498824c6c04dfe9ff, type: 2}

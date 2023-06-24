@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8854268319521279232, guid: 93ade62f5ff04254698aea694f14f7c9, type: 3}
+      propertyPath: m_Name
+      value: Down
+      objectReference: {fileID: 0}
+    - target: {fileID: -8854268319521279232, guid: 93ade62f5ff04254698aea694f14f7c9, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -91,6 +95,10 @@ PrefabInstance:
     - target: {fileID: -6797923031987843779, guid: 93ade62f5ff04254698aea694f14f7c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -5863156357417687581, guid: 93ade62f5ff04254698aea694f14f7c9, type: 3}
+      propertyPath: m_Name
+      value: Up
       objectReference: {fileID: 0}
     - target: {fileID: -5863156357417687581, guid: 93ade62f5ff04254698aea694f14f7c9, type: 3}
       propertyPath: m_Layer

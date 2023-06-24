@@ -15,4 +15,5 @@ MonoBehaviour:
   id: 6
   rank: 1
   prefab: {fileID: 1579255551901441341, guid: e65d71a4768bdcc45bfbdd28859041ea, type: 3}
+  material: {fileID: 2100000, guid: 9613a291c6b2c1b458c9ba171aee392e, type: 2}
   isAutoMosaic: 0
