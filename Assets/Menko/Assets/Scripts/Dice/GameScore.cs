@@ -138,7 +138,6 @@ public class GameScore : MonoBehaviour
         RoundDiceInfo.CountRoleCombo = CountRoleCombo;
         RoundDiceInfos.Add(RoundDiceInfo);
 
-        WordAnimation.instance.RunAnimation();
     }
 
     private void AddScoreByWord(string Word)

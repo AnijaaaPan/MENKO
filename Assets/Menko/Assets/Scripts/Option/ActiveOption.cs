@@ -6,6 +6,7 @@ public class ActiveOption : MonoBehaviour
     public RectTransform OptionTransform;
     public CanvasGroup OptionCanvas;
     public GameObject ContentObject;
+    public GameObject SetMenko;
 
     async void Start()
     {
@@ -18,6 +19,7 @@ public class ActiveOption : MonoBehaviour
         }
 
         ContentObject.SetActive(true);
+        SetMenko.SetActive(true);
     }
 
     private void OptionZoomOut(int positionZ, float colorAlpha)

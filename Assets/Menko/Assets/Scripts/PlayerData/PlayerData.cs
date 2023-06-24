@@ -38,13 +38,15 @@ namespace Menko.PlayerData
         {
             IEnumerable<MenkoSetting> newMenkoSetting = MenkoDatas.Select(data =>
             {
-                if (data.GetRank() != Rank.Default) return null;
-
                 int id = data.GetId();
+                if (id > 2) return null;
+
+                Setting index = id == 1 ? Setting.Main : Setting.Sub;
+
                 MenkoSetting newData = new()
                 {
                     id = id,
-                    index = id
+                    index = index
                 };
                 return newData;
             });
@@ -56,7 +58,7 @@ namespace Menko.PlayerData
             return !MenkoAchievements.Exists(a => a.isOpen == false);
         }
 
-        public void UpdateMenkoSetting(int index, int updateId)
+        public void UpdateMenkoSetting(Setting index, int updateId)
         {
             MenkoSetting MenkoSetting = MenkoSettings.Find(match: a => a.index == index);
             MenkoSetting.UpdateMenkoId(updateId);
@@ -80,7 +82,7 @@ namespace Menko.PlayerData
             return MenkoSetting;
         }
 
-        public MenkoSetting GetMenkoSettingByIndex(int index)
+        public MenkoSetting GetMenkoSettingByIndex(Setting index)
         {
             MenkoSetting MenkoSetting = MenkoSettings.Find(match: a => a.index == index);
             return MenkoSetting;
@@ -102,7 +104,7 @@ namespace Menko.PlayerData
     [System.Serializable]
     public class MenkoSetting
     {
-        public int index; // 1: メイン | 2, 3: サブ
+        public Setting index; // 1: メイン | 2: サブ
         public int id; // 識別MenkoID
 
         public void UpdateMenkoId(int id)
@@ -110,4 +112,12 @@ namespace Menko.PlayerData
             this.id = id;
         }
     }
+
+    [System.Serializable]
+    public enum Setting
+    {
+        Main = 1,
+        Sub = 2,
+    }
+
 }

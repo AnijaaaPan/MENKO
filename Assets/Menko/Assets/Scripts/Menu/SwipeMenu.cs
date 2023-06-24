@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,9 +7,13 @@ public class SwipeMenu : MonoBehaviour
     [SerializeField]
     Scrollbar ScrollBar;
 
+    [SerializeField]
+    TextMeshProUGUI TextMeshProUGUI;
+
+    public int SelectMenkoId = -1;
+
     private int Lenght;
     private float Distance;
-    private int SelectMenkoId = -1;
     private float ScrollPos = 0;
     private float[] Positions;
 
@@ -33,6 +38,7 @@ public class SwipeMenu : MonoBehaviour
                 if (ScrollPos < Positions[i] + (Distance / 2) && ScrollPos > Positions[i] - (Distance / 2))
                 {
                     UpdateSelectMenkoId(i);
+                    UpdateSwipeMenuPage(i);
                 }
             }
         }
@@ -44,6 +50,11 @@ public class SwipeMenu : MonoBehaviour
     {
         SelectMenkoId = index;
         ScrollBar.value = Mathf.Lerp(ScrollBar.value, Positions[index], 0.1f);
+    }
+
+    private void UpdateSwipeMenuPage(int index)
+    {
+        TextMeshProUGUI.text = $"{index + 1} / {Lenght}";
     }
 
     private void UpdateSelectMenu()
