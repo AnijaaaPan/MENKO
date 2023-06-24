@@ -10,18 +10,16 @@ public class SetMenko : MonoBehaviour
     public GameObject MainPreviewObject;
     public GameObject SubPreviewObject;
 
-    private PlayerData PlayerData;
-
     private void Start()
     {
-        PlayerData = Json.instance.Load();
         UpdatePreviewMenko(Setting.Main);
         UpdatePreviewMenko(Setting.Sub);
     }
 
     public void UpdatePreviewMenko(Setting setId)
     {
-        MenkoSetting menkoSetting = PlayerData.GetMenkoSettingByIndex(setId);
+        PlayerData playerData = Json.instance.Load();
+        MenkoSetting menkoSetting = playerData.GetMenkoSettingByIndex(setId);
         MenkoData menkoData = MenkoDataBase.GetMenko(menkoSetting.id);
         UpdatePreviewObject(menkoData, setId);
     }

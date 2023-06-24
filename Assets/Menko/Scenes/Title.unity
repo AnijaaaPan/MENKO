@@ -1063,6 +1063,7 @@ GameObject:
   - component: {fileID: 108006573}
   - component: {fileID: 108006572}
   - component: {fileID: 108006571}
+  - component: {fileID: 108006574}
   m_Layer: 5
   m_Name: Sub Menko
   m_TagString: Untagged
@@ -1175,6 +1176,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108006569}
   m_CullTransparentMesh: 1
+--- !u!114 &108006574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108006569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1bc69e5383ee2f439aca6a8e0654170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Setting: 2
+  SetMenko: {fileID: 1442510910}
+  SwipeMenu: {fileID: 344799458}
 --- !u!1 &114187921
 GameObject:
   m_ObjectHideFlags: 0
@@ -15693,7 +15709,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1442510908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7326663d498c44ab5e4d15ff3f3cce, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ec4a358fc5c8a546be624649c6d1ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenkoDataBase: {fileID: 11400000, guid: 75f9a309e8c4c204c93842661561ffe0, type: 2}
@@ -15788,6 +15804,7 @@ GameObject:
   - component: {fileID: 1447223355}
   - component: {fileID: 1447223354}
   - component: {fileID: 1447223353}
+  - component: {fileID: 1447223356}
   m_Layer: 5
   m_Name: Main Menko
   m_TagString: Untagged
@@ -15900,6 +15917,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447223351}
   m_CullTransparentMesh: 1
+--- !u!114 &1447223356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447223351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1bc69e5383ee2f439aca6a8e0654170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Setting: 1
+  SetMenko: {fileID: 1442510910}
+  SwipeMenu: {fileID: 344799458}
 --- !u!1 &1453262177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1717275119975352, guid: 34490b0cf5f40744f8838d96fded0708, type: 3}
@@ -16081,8 +16113,8 @@ RectTransform:
   m_Children:
   - {fileID: 1309886624}
   - {fileID: 1371261398}
-  - {fileID: 1950104247}
   - {fileID: 1544608243}
+  - {fileID: 1950104247}
   m_Father: {fileID: 482915616}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
