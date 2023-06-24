@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,31 +6,22 @@ public class SwipeMenu : MonoBehaviour
     [SerializeField]
     Scrollbar ScrollBar;
 
-    [SerializeField]
-    MenkoDataBase MenkoDataBase;
-
     private int Lenght;
     private float Distance;
     private int SelectMenkoId = -1;
     private float ScrollPos = 0;
     private float[] Positions;
 
-    private void Start()
+    private void Update()
     {
-        List<MenkoData> Menkos = MenkoDataBase.GetMenkos();
-        Lenght = Menkos.Count;
-
-
+        Lenght = transform.childCount;
         Positions = new float[Lenght];
         Distance = 1f / (Lenght - 1f);
         for (int i = 0; i < Lenght; i++)
         {
             Positions[i] = Distance * i;
         }
-    }
 
-    private void Update()
-    {
         if (Input.GetMouseButton(0))
         {
             ScrollPos = ScrollBar.value;
@@ -66,6 +55,7 @@ public class SwipeMenu : MonoBehaviour
                 for (int a = 0; a < Lenght; a++)
                 {
                     Transform chileTransform = transform.GetChild(a);
+
                     float value = IsSelected(a) ? 1f : 0.7f;
 
                     Vector3 newVector3 = new(value, value, value);
