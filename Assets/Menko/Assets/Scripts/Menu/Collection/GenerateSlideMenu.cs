@@ -11,9 +11,6 @@ public class GenerateSlideMenu : MonoBehaviour
     [SerializeField]
     MenkoDataBase MenkoDataBase;
 
-    //[SerializeField]
-    //GameObject ;
-
     private void Start()
     {
         Generate();
