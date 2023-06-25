@@ -1,11 +1,13 @@
-using UnityEngine;
 using Menko.Enums;
 using Menko.GameProcess;
+using Menko.PlayerData;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class GameProcess : MonoBehaviour
 {
     public static GameProcess instance;
+    public CameraMultiTarget cameraMultiTarget;
     public MenkoDataBase MenkoDataBase;
 
     public ProcessState ProcessState = ProcessState.Init;
@@ -42,5 +44,34 @@ public class GameProcess : MonoBehaviour
         ProcessEndGame = GetComponent<ProcessEndGame>();
 
         ProcessInit.Run();
+    }
+
+    public MenkoData GetRandomMenkoObject(bool isAll = false)
+    {
+        PlayerData playerData = Json.instance.Load();
+        List<MenkoData> menkoDatas = MenkoDataBase.GetMenkos();
+        List<MenkoData> filterPrefabs = menkoDatas.FindAll(data =>
+        {
+            if (isAll) return true;
+
+            int id = data.GetId();
+            MenkoAchievement menkoAchievement = playerData.MenkoAchievements.Find(m => m.id == id);
+            return menkoAchievement.isOpen;
+        });
+
+        System.Random random = new();
+        int randomIndex = random.Next(filterPrefabs.Count);
+        return filterPrefabs[randomIndex];
+    }
+
+    public void InitSetCameraObject(GameObject[] Objects)
+    {
+        cameraMultiTarget.SetTargets(Objects);
+    }
+
+    public void UpdateProcessWaitStart()
+    {
+        ProcessState = ProcessState.WaitStart;
+        ProcessWaitStart.Run();
     }
 }

@@ -1,77 +1,77 @@
 {
-    "SetMenkoId": 3,
-    "MenkoAchievements": [
-        {
-            "id": 1,
-            "isOpen": true
-        },
-        {
-            "id": 2,
-            "isOpen": true
-        },
-        {
-            "id": 3,
-            "isOpen": true
-        },
-        {
-            "id": 4,
-            "isOpen": false
-        },
-        {
-            "id": 5,
-            "isOpen": false
-        },
-        {
-            "id": 6,
-            "isOpen": false
-        },
-        {
-            "id": 7,
-            "isOpen": false
-        },
-        {
-            "id": 8,
-            "isOpen": false
-        },
-        {
-            "id": 9,
-            "isOpen": false
-        },
-        {
-            "id": 10,
-            "isOpen": false
-        },
-        {
-            "id": 11,
-            "isOpen": false
-        },
-        {
-            "id": 12,
-            "isOpen": false
-        },
-        {
-            "id": 13,
-            "isOpen": false
-        },
-        {
-            "id": 14,
-            "isOpen": false
-        },
-        {
-            "id": 15,
-            "isOpen": false
-        },
-        {
-            "id": 16,
-            "isOpen": false
-        },
-        {
-            "id": 17,
-            "isOpen": false
-        },
-        {
-            "id": 18,
-            "isOpen": false
-        }
-    ]
+  "SetMenkoId": 1,
+  "MenkoAchievements": [
+    {
+      "id": 1,
+      "isOpen": true
+    },
+    {
+      "id": 2,
+      "isOpen": true
+    },
+    {
+      "id": 3,
+      "isOpen": true
+    },
+    {
+      "id": 4,
+      "isOpen": false
+    },
+    {
+      "id": 5,
+      "isOpen": false
+    },
+    {
+      "id": 6,
+      "isOpen": false
+    },
+    {
+      "id": 7,
+      "isOpen": false
+    },
+    {
+      "id": 8,
+      "isOpen": false
+    },
+    {
+      "id": 9,
+      "isOpen": false
+    },
+    {
+      "id": 10,
+      "isOpen": false
+    },
+    {
+      "id": 11,
+      "isOpen": false
+    },
+    {
+      "id": 12,
+      "isOpen": false
+    },
+    {
+      "id": 13,
+      "isOpen": false
+    },
+    {
+      "id": 14,
+      "isOpen": false
+    },
+    {
+      "id": 15,
+      "isOpen": false
+    },
+    {
+      "id": 16,
+      "isOpen": false
+    },
+    {
+      "id": 17,
+      "isOpen": false
+    },
+    {
+      "id": 18,
+      "isOpen": false
+    }
+  ]
 }

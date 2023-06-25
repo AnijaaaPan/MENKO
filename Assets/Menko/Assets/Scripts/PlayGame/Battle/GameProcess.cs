@@ -6,7 +6,8 @@ namespace Menko.GameProcess
     public enum BattleUserType
     {
         Player,
-        CPU
+        CPU,
+        Field
     }
 
     [System.Serializable]

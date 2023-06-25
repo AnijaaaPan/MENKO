@@ -7,6 +7,7 @@ public class FadeInOutImage : MonoBehaviour
     public static FadeInOutImage instance;
     public Image Image;
 
+    public bool isTitle = true;
     private Color Color = Color.black;
 
     private void Awake()
@@ -20,6 +21,7 @@ public class FadeInOutImage : MonoBehaviour
     async void Start()
     {
         await FadeInOut(true, 0.01f, 100);
+        await IsTitle();
     }
 
     public async Task FadeInOut(bool IsIn, float ChangeValue, int Delay)
@@ -31,6 +33,16 @@ public class FadeInOutImage : MonoBehaviour
 
             await Task.Delay(Delay);
         }
-        await FadeInOut(!IsIn, 0.01f, 300);
+    }
+
+    private async Task IsTitle()
+    {
+        if (!isTitle) return;
+        await FadeInOut(false, 0.01f, 300);
+
+        if (!isTitle) return;
+        await FadeInOut(true, 0.01f, 300);
+
+        await IsTitle();
     }
 }

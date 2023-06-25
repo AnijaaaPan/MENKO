@@ -1,7 +1,6 @@
-using Menko.GameProcess;
-using Menko.PlayerData;
 using Menko.UpdateMenko;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class ProcessInit : MonoBehaviour
@@ -21,80 +20,74 @@ public class ProcessInit : MonoBehaviour
     [SerializeField]
     CameraRing CameraRing;
 
-    public void Run()
+    [SerializeField]
+    GameObject BattleReadyCanvasObject;
+
+    private GameProcess GameProcess;
+    private float time;
+
+    private void Start()
     {
+        GameProcess = GetComponent<GameProcess>();
+    }
+
+    public async void Run()
+    {
+        FadeInOutImage.instance.isTitle = false;
+        await FadeInOutImage.instance.FadeInOut(false, 0.01f, 15);
+
         CameraRing.WaitStart();
 
         TitleMenkoObjects.SetActive(false);
         InGameMenkoObjects.SetActive(true);
-
-        InitBattleUsers();
         SetBattleMenko();
+
+        await FadeInOutImage.instance.FadeInOut(true, 0.05f, 20);
+        await ShowBattleReadyCanvas();
+
+        GameProcess.UpdateProcessWaitStart();
     }
 
-    private void InitBattleUsers()
+    private async Task ShowBattleReadyCanvas()
     {
-        List<BattleUserState> BattleUsers = new();
-        BattleUsers.Add(InitBattlePlayer());
-        BattleUsers.Add(InitBattleCPU());
+        string initText = "Ready";
+        CanvasGroup CanvasGroup = BattleReadyCanvasObject.GetComponent<CanvasGroup>();
+        TextMeshProUGUI BattleReadyText = BattleReadyCanvasObject.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
-        GameProcess.instance.BattleUsers = BattleUsers;
-    }
-
-    private BattleUserState InitBattlePlayer()
-    {
-        BattleUserState BattleUser = new()
+        for (int i = 1; i <= 15; i++)
         {
-            UserType = BattleUserType.Player,
-            SetMenkoData = GetPlayerMenkoData(),
-        };
-        return BattleUser;
-    }
+            CanvasGroup.alpha = i * 0.1f;
 
-    private MenkoData GetPlayerMenkoData()
-    {
-        PlayerData playerData = Json.instance.Load();
-        MenkoData getMenkoData = GameProcess.instance.MenkoDataBase.GetMenko(playerData.SetMenkoId);
-        return getMenkoData;
-    }
+            string randomText = RandomPassword.Generate(initText.Length);
+            BattleReadyText.text = randomText;
+            await Task.Delay(20);
+        }
 
-    private BattleUserState InitBattleCPU()
-    {
-        BattleUserState BattleUser = new()
+        for (int i = 0; i <= 3; i++)
         {
-            UserType = BattleUserType.CPU,
-            SetMenkoData = GetCPUMenkoData()
-        };
-        return BattleUser;
-    }
+            string addText = new('.', i);
+            BattleReadyText.text = $"{initText}{addText}";
+            await Task.Delay(1000);
+        }
 
-    private MenkoData GetCPUMenkoData()
-    {
-        MenkoData getMenkoData = GetRandomMenkoObject();
-        return getMenkoData;
-    }
-
-    private MenkoData GetRandomMenkoObject(bool isAll = false)
-    {
-        PlayerData playerData = Json.instance.Load();
-        List<MenkoData> menkoDatas = GameProcess.instance.MenkoDataBase.GetMenkos();
-        List<MenkoData> filterPrefabs = menkoDatas.FindAll(data =>
+        BattleReadyText.text = "Fight";
+        for (int i = 0; i < 50; i++)
         {
-            if (isAll) return true;
+            CanvasGroup.alpha = GetAlphaColor();
+            await Task.Delay(15);
+        }
+        CanvasGroup.alpha = 0;
+    }
 
-            int id = data.GetId();
-            MenkoAchievement menkoAchievement = playerData.MenkoAchievements.Find(m => m.id == id);
-            return menkoAchievement.isOpen;
-        });
-
-        System.Random random = new();
-        int randomIndex = random.Next(filterPrefabs.Count);
-        return filterPrefabs[randomIndex];
+    private float GetAlphaColor()
+    {
+        time += Time.unscaledDeltaTime * 20;
+        return Mathf.Sin(time) * 0.5f + 0.5f;
     }
 
     private void SetBattleMenko()
     {
-        MenkoData stageMenkoData = GetRandomMenkoObject(true);
+        MenkoData stageMenkoData = GameProcess.GetRandomMenkoObject(true);
         GameProcess.instance.StageMenko = stageMenkoData;
 
         Vector3 InitPos = InitMenkoObject.transform.localPosition;
