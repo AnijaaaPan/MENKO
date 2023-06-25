@@ -20,6 +20,12 @@ public class OnClickMenu : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     CanvasGroup StartMenuCanvas;
 
+    [SerializeField]
+    GameObject InGameObject;
+
+    [SerializeField]
+    GameObject FadeInOutImageObject;
+
     private float time;
     private Image ObjectImage;
     private RectTransform StartMenuRectTransform;
@@ -92,7 +98,9 @@ public class OnClickMenu : MonoBehaviour, IPointerClickHandler
 
         if (Object == StartObject)
         {
-            // GameStart.instance.InitGame();
+            InGameObject.SetActive(true);
+            FadeInOutImageObject.SetActive(false);
+            gameObject.SetActive(false);
             return;
         }
     }

@@ -15,8 +15,8 @@ public class CameraRing : MonoBehaviour
     private readonly float PitchMax = 85f;
     private readonly float YawMin = 0f;
     private readonly float YawMax = 360f;
-    private float PaddingMin = 7.5f;
-    private float PaddingMax = 15f;
+    private float PaddingMin = 6.5f;
+    private float PaddingMax = 12.5f;
     private float DiffPaddingMax = 0.05f;
 
     private float InitPitch = 0;
@@ -129,10 +129,8 @@ public class CameraRing : MonoBehaviour
         else if (cameraMultiTarget.PaddingDown <= PaddingMin) MovePadding = 1;
     }
 
-    public void DiceOnRing()
+    public void WaitStart()
     {
-        PaddingMin = 5f;
         PaddingMax = 10f;
-        DiffPaddingMax = 0.005f;
     }
 }

@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8854268319521279232, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -84,6 +88,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -5863156357417687581, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -4926887409236218260, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -4220977634165264951, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -99,6 +111,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
       propertyPath: m_Name
       value: Menko18
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5196841158122582497, guid: bc7331b1ec412ed418efd87bb2bad080, type: 3}
       propertyPath: m_Materials.Array.size
