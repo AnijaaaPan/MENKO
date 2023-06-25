@@ -87,7 +87,6 @@ public class ProcessInit : MonoBehaviour
             return menkoAchievement.isOpen;
         });
 
-        Debug.Log(filterPrefabs.Count);
         System.Random random = new();
         int randomIndex = random.Next(filterPrefabs.Count);
         return filterPrefabs[randomIndex];

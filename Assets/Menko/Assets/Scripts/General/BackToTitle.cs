@@ -13,6 +13,8 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
 
     public GameObject ContentObject;
     public GameObject SetMenkoObject;
+    public GameObject PlayerPreviewObject;
+    public GameObject CPUPreviewObject;
 
     private float initLeftX = -1575;
     private float initRightX = 1575;
@@ -47,14 +49,21 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
 
     private void HideOutline()
     {
-        GameObject PreviewObject = SetMenkoObject.transform.Find("Preview Menko(Clone)").gameObject;
-        PreviewObject.GetComponent<Outline>().enabled = false;
+        if (SetMenkoObject.transform.Find("Preview Menko(Clone)"))
+        {
+            GameObject PreviewObject = SetMenkoObject.transform.Find("Preview Menko(Clone)").gameObject;
+            PreviewObject.GetComponent<Outline>().enabled = false;
+        }
+
         for (int i = 0; i < ContentObject.transform.childCount; i++)
         {
             Transform transform = ContentObject.transform.GetChild(i);
             GameObject getPreviewObject = transform.Find("Preview Menko").gameObject;
             getPreviewObject.GetComponent<Outline>().enabled = false;
         }
+
+        PlayerPreviewObject.GetComponent<Outline>().enabled = false;
+        CPUPreviewObject.GetComponent<Outline>().enabled = false;
     }
 
     private void OptionZoomOut(float positionZ, float colorAlpha)

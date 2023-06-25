@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class ActiveOption : MonoBehaviour
+public class ActiveCollectionMenu : MonoBehaviour
 {
     public RectTransform OptionTransform;
     public CanvasGroup OptionCanvas;
