@@ -1,4 +1,3 @@
-using Menko.Enums;
 using Menko.GameProcess;
 using Menko.PlayerData;
 using System.Collections.Generic;
@@ -17,8 +16,7 @@ public class GameProcess : MonoBehaviour
 
     private ProcessInit ProcessInit;
     private ProcessWaitStart ProcessWaitStart;
-    private ProcessFallPoint ProcessFallPoint;
-    private ProcessFallPower ProcessFallPower;
+    private ProcessFallPointAndPower ProcessFallPointAndPower;
     private ProcessMenkoFalling ProcessMenkoFalling;
     private ProcessMenkoFallEnd ProcessMenkoFallEnd;
     private ProcessWaitNextRound ProcessWaitNextRound;
@@ -36,14 +34,13 @@ public class GameProcess : MonoBehaviour
     {
         ProcessInit = GetComponent<ProcessInit>();
         ProcessWaitStart = GetComponent<ProcessWaitStart>();
-        ProcessFallPoint = GetComponent<ProcessFallPoint>();
-        ProcessFallPower = GetComponent<ProcessFallPower>();
+        ProcessFallPointAndPower = GetComponent<ProcessFallPointAndPower>();
         ProcessMenkoFalling = GetComponent<ProcessMenkoFalling>();
         ProcessMenkoFallEnd = GetComponent<ProcessMenkoFallEnd>();
         ProcessWaitNextRound = GetComponent<ProcessWaitNextRound>();
         ProcessEndGame = GetComponent<ProcessEndGame>();
 
-        ProcessInit.Run();
+        UpdateProcessInit();
     }
 
     public MenkoData GetRandomMenkoObject(bool isAll = false)
@@ -69,9 +66,38 @@ public class GameProcess : MonoBehaviour
         cameraMultiTarget.SetTargets(Objects);
     }
 
+    public void UpdateProcessInit()
+    {
+        ProcessState = ProcessState.Init;
+        ProcessInit.enabled = true;
+        ProcessInit.Run();
+    }
+
     public void UpdateProcessWaitStart()
     {
+        ProcessInit.enabled = false;
+
         ProcessState = ProcessState.WaitStart;
+        ProcessWaitStart.enabled = true;
         ProcessWaitStart.Run();
     }
+
+    public void UpdateProcessFallPointAndPower()
+    {
+        ProcessWaitStart.enabled = false;
+
+        ProcessState = ProcessState.FallPointAndPower;
+        ProcessFallPointAndPower.enabled = true;
+        ProcessFallPointAndPower.Run();
+    }
+
+    public void UpdateProcessMenkoFalling()
+    {
+        ProcessFallPointAndPower.enabled = false;
+
+        ProcessState = ProcessState.MenkoFalling;
+        ProcessMenkoFalling.enabled = true;
+        ProcessMenkoFalling.Run();
+    }
+
 }

@@ -32,6 +32,8 @@ public class CameraRing : MonoBehaviour
     private int InitCount = 0;
     private int RandomCount = 0;
 
+    private bool IsStop = false;
+
     private void Awake()
     {
         instance = this;
@@ -45,6 +47,7 @@ public class CameraRing : MonoBehaviour
 
     private async void UpdateCamera()
     {
+        if (IsStop) return;
         if (cameraMultiTarget == null) return;
 
         if (InitCount % RandomCount == 0)
@@ -132,5 +135,15 @@ public class CameraRing : MonoBehaviour
     public void WaitStart()
     {
         PaddingMax = 10f;
+    }
+
+    public void Stop()
+    {
+        IsStop = true;
+    }
+
+    public void ReStart()
+    {
+        IsStop = false;
     }
 }

@@ -2,7 +2,6 @@ using Menko.GameProcess;
 using Menko.PlayerData;
 using Menko.UpdateMenko;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class ProcessWaitStart : MonoBehaviour
@@ -17,30 +16,26 @@ public class ProcessWaitStart : MonoBehaviour
     [SerializeField]
     GameObject InGameUIObject;
 
-    private GameProcess GameProcess;
+    [SerializeField]
+    GameObject JoyStickObject;
 
-    private void Start()
+    private void Update()
     {
-        GameProcess = GetComponent<GameProcess>();
+        if (GameProcess.instance.ProcessState != ProcessState.WaitStart) return;
+        if (GameProcess.instance.BattleTurn != BattleUserType.Player) return;
+
+        bool isJoyStickActive = JoyStickObject.activeInHierarchy;
+        if (!isJoyStickActive) return;
+
+        GameProcess.instance.UpdateProcessFallPointAndPower();
     }
 
-    public async void Run()
+    public void Run()
     {
         UpdateBattleUsers();
         UpdateUserMenkoPreview();
 
-        await ShowInGameUI();
-    }
-
-    private async Task ShowInGameUI()
-    {
         InGameUIObject.SetActive(true);
-        CanvasGroup UICanvasGroup = InGameUIObject.GetComponent<CanvasGroup>();
-        for (int i = 1; i <= 10; i++)
-        {
-            UICanvasGroup.alpha = i * 0.1f;
-            await Task.Delay(50);
-        }
     }
 
     private void UpdateBattleUsers()
@@ -81,7 +76,7 @@ public class ProcessWaitStart : MonoBehaviour
 
     private MenkoData GetCPUMenkoData()
     {
-        MenkoData getMenkoData = GameProcess.GetRandomMenkoObject();
+        MenkoData getMenkoData = GameProcess.instance.GetRandomMenkoObject();
         return getMenkoData;
     }
 

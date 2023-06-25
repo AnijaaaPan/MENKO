@@ -23,13 +23,7 @@ public class ProcessInit : MonoBehaviour
     [SerializeField]
     GameObject BattleReadyCanvasObject;
 
-    private GameProcess GameProcess;
     private float time;
-
-    private void Start()
-    {
-        GameProcess = GetComponent<GameProcess>();
-    }
 
     public async void Run()
     {
@@ -45,7 +39,7 @@ public class ProcessInit : MonoBehaviour
         await FadeInOutImage.instance.FadeInOut(true, 0.05f, 20);
         await ShowBattleReadyCanvas();
 
-        GameProcess.UpdateProcessWaitStart();
+        GameProcess.instance.UpdateProcessWaitStart();
     }
 
     private async Task ShowBattleReadyCanvas()
@@ -60,18 +54,18 @@ public class ProcessInit : MonoBehaviour
 
             string randomText = RandomPassword.Generate(initText.Length);
             BattleReadyText.text = randomText;
-            await Task.Delay(20);
+            await Task.Delay(15);
         }
 
         for (int i = 0; i <= 3; i++)
         {
             string addText = new('.', i);
             BattleReadyText.text = $"{initText}{addText}";
-            await Task.Delay(1000);
+            await Task.Delay(750);
         }
 
         BattleReadyText.text = "Fight";
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 40; i++)
         {
             CanvasGroup.alpha = GetAlphaColor();
             await Task.Delay(15);
@@ -87,7 +81,7 @@ public class ProcessInit : MonoBehaviour
 
     private void SetBattleMenko()
     {
-        MenkoData stageMenkoData = GameProcess.GetRandomMenkoObject(true);
+        MenkoData stageMenkoData = GameProcess.instance.GetRandomMenkoObject(true);
         GameProcess.instance.StageMenko = stageMenkoData;
 
         Vector3 InitPos = InitMenkoObject.transform.localPosition;
