@@ -1,14 +1,5 @@
 {
-    "MenkoSettings": [
-        {
-            "index": 1,
-            "id": 1
-        },
-        {
-            "index": 2,
-            "id": 2
-        }
-    ],
+    "SetMenkoId": 1,
     "MenkoAchievements": [
         {
             "id": 1,

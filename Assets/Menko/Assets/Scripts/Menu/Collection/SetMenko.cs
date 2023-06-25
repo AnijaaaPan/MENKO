@@ -1,143 +1,53 @@
 using Menko.PlayerData;
-using Menko.Enums;
+using Menko.UpdateMenko;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class SetMenko : MonoBehaviour
+public class SetMenko : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     MenkoDataBase MenkoDataBase;
 
-    public GameObject MainPreviewObject;
-    public GameObject SubPreviewObject;
+    [SerializeField]
+    SwipeMenu SwipeMenu;
 
-    public Outline MainPreviewOutline;
-    public Outline SubPreviewOutline;
+    public GameObject PreviewObject;
+    private GameObject ClonePreviewObject;
 
     private void Start()
     {
-        UpdatePreviewMenko(Setting.Main);
-        UpdatePreviewMenko(Setting.Sub);
-    }
-
-    public void UpdatePreviewMenko(Setting setId)
-    {
         PlayerData playerData = Json.instance.Load();
-        MenkoSetting menkoSetting = playerData.GetMenkoSettingByIndex(setId);
-        MenkoData menkoData = MenkoDataBase.GetMenko(menkoSetting.id);
-        UpdatePreviewObject(menkoData, setId);
-        UpdateOutline(setId);
+        UpdatePreviewMenko(playerData.SetMenkoId);
     }
 
-    private GameObject FindObject(GameObject parent, string name)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        return parent.transform.Find(name).gameObject;
-    }
+        if (eventData.button != PointerEventData.InputButton.Left) return;
 
-    private void UpdatePreviewObject(MenkoData data, Setting setId)
-    {
-        Rank MenkoRank = data.GetRank();
-        GameObject MenkoPrefab = data.GetPrefab();
-
-        GameObject previewMenkoObject = setId == Setting.Main ? MainPreviewObject : SubPreviewObject;
-        UpdateRotate(previewMenkoObject, data);
-        UpdateLocalScale(previewMenkoObject, data);
-
-        GameObject upObject = FindObject(previewMenkoObject, "Up");
-        GameObject downObject = FindObject(previewMenkoObject, "Down");
-        GameObject sideObject = FindObject(previewMenkoObject, "Side");
-
-        GameObject upPrefab = FindObject(MenkoPrefab, "Up");
-        GameObject downPrefab = FindObject(MenkoPrefab, "Down");
-        GameObject sidePrefab = FindObject(MenkoPrefab, "Side");
-
-        GameObject updateUpObject = MenkoRank == Rank.Default ? downPrefab : upPrefab;
-        GameObject updateDownPrefab = MenkoRank == Rank.Default ? upPrefab : downPrefab;
-
-        UpdateMesh(upObject, updateUpObject);
-        UpdateMaterials(upObject, updateUpObject, data);
-
-        UpdateMesh(downObject, updateDownPrefab);
-        UpdateMaterials(downObject, updateDownPrefab, data);
-
-        UpdateMesh(sideObject, sidePrefab);
-        UpdateMaterials(sideObject, sidePrefab, data);
-    }
-
-    private void UpdateMesh(GameObject targetObject, GameObject targetPrefab)
-    {
-        Mesh sharedMesh = targetPrefab.GetComponent<MeshFilter>().sharedMesh;
-        MeshFilter targetMeshFilter = targetObject.GetComponent<MeshFilter>();
-
-        targetMeshFilter.mesh = sharedMesh;
-    }
-
-    private void UpdateMaterials(GameObject targetObject, GameObject targetPrefab, MenkoData data)
-    {
-        Material[] sharedMaterials = targetPrefab.GetComponent<MeshRenderer>().sharedMaterials;
-        MeshRenderer targetMeshRenderer = targetObject.GetComponent<MeshRenderer>();
-
-        if (!data.GetIsAutoMosaic())
-        {
-            targetMeshRenderer.materials = sharedMaterials;
-            return;
-        }
+        int id = SwipeMenu.SelectMenkoId + 1;
 
         PlayerData playerData = Json.instance.Load();
-        if (!playerData.CheckAllAchievementOpen())
-        {
-            targetMeshRenderer.materials = sharedMaterials;
-            return;
-        };
+        MenkoAchievement menkoAchievement = playerData.GetMenkoAchievementById(id);
+        if (!menkoAchievement.isOpen || id == playerData.SetMenkoId) return;
 
-        targetMeshRenderer.material = null;
-        targetMeshRenderer.material = sharedMaterials[0];
+        playerData.UpdateMenkoSetting(id);
+        Json.instance.Save(playerData);
+
+        UpdatePreviewMenko(id);
     }
 
-    private void UpdateRotate(GameObject previewMenkoObject, MenkoData data)
+    private void UpdatePreviewMenko(int id)
     {
-        int MenkoId = data.GetId();
-        previewMenkoObject.transform.localRotation = Quaternion.Euler(-90, 0, 0);
-
-        if (MenkoId == 1)
+        if (ClonePreviewObject)
         {
-            previewMenkoObject.transform.localRotation = Quaternion.Euler(90, 180, 0);
-        }
-    }
-
-    private void UpdateLocalScale(GameObject previewMenkoObject, MenkoData data)
-    {
-        int MenkoId = data.GetId();
-
-        previewMenkoObject.transform.localScale = new Vector3(75, 75, 75);
-        if (MenkoId == 1)
-        {
-            previewMenkoObject.transform.localScale *= 0.9f;
-        }
-        else if (MenkoId == 3)
-        {
-            previewMenkoObject.transform.localScale *= 1.5f;
+            Destroy(ClonePreviewObject);
         }
 
-        if (MenkoId >= 3)
-        {
-            float newX = previewMenkoObject.transform.localScale.x;
-            float newY = MenkoId == 3 ? 3500 : 1500;
-            float newZ = previewMenkoObject.transform.localScale.z;
-            previewMenkoObject.transform.localScale = new Vector3(newX, newY, newZ);
-        }
-    }
+        ClonePreviewObject = Instantiate(PreviewObject);
+        ClonePreviewObject.transform.SetParent(transform, false);
+        ClonePreviewObject.SetActive(true);
 
-    private void UpdateOutline(Setting setId)
-    {
-        if (setId == Setting.Main)
-        {
-            MainPreviewOutline.enabled = false;
-            MainPreviewOutline.enabled = true;
-        }
-        else
-        {
-            SubPreviewOutline.enabled = false;
-            SubPreviewOutline.enabled = true;
-        }
+        MenkoData menkoData = MenkoDataBase.GetMenko(id);
+        MenkoMesh.Update(ClonePreviewObject, menkoData);
     }
 }

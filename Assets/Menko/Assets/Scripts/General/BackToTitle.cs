@@ -11,6 +11,9 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
     public RectTransform OptionTransform;
     public CanvasGroup OptionCanvas;
 
+    public GameObject ContentObject;
+    public GameObject SetMenkoObject;
+
     private float initLeftX = -1575;
     private float initRightX = 1575;
 
@@ -24,6 +27,8 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
 
     private async void BackScene()
     {
+        HideOutline();
+
         for (int i = 1; i <= 50; i++)
         {
             OptionZoomOut(i * -1.5f, 1 - i * 0.05f);
@@ -38,6 +43,18 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
         }
 
         SceneManager.LoadSceneAsync("Title");
+    }
+
+    private void HideOutline()
+    {
+        GameObject PreviewObject = SetMenkoObject.transform.Find("Preview Menko(Clone)").gameObject;
+        PreviewObject.GetComponent<Outline>().enabled = false;
+        for (int i = 0; i < ContentObject.transform.childCount; i++)
+        {
+            Transform transform = ContentObject.transform.GetChild(i);
+            GameObject getPreviewObject = transform.Find("Preview Menko").gameObject;
+            getPreviewObject.GetComponent<Outline>().enabled = false;
+        }
     }
 
     private void OptionZoomOut(float positionZ, float colorAlpha)

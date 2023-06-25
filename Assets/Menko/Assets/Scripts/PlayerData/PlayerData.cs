@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Menko.Enums;
-using UnityEngine;
 
 namespace Menko.PlayerData
 {
     [System.Serializable]
     public class PlayerData
     {
-        public List<MenkoSetting> MenkoSettings;
+        public int SetMenkoId;
         public List<MenkoAchievement> MenkoAchievements;
 
         public static PlayerData Init(List<MenkoData> MenkoDatas)
@@ -16,7 +15,7 @@ namespace Menko.PlayerData
             PlayerData newPlayerData = new()
             {
                 MenkoAchievements = InitMenkoAchievements(MenkoDatas),
-                MenkoSettings = InitMenkoSettings(MenkoDatas)
+                SetMenkoId = MenkoDatas[0].GetId()
             };
             return newPlayerData;
         }
@@ -35,34 +34,14 @@ namespace Menko.PlayerData
             return newMenkoAchievements.ToList();
         }
 
-        private static List<MenkoSetting> InitMenkoSettings(List<MenkoData> MenkoDatas)
-        {
-            IEnumerable<MenkoSetting> newMenkoSetting = MenkoDatas.Select(data =>
-            {
-                int id = data.GetId();
-                if (id > 2) return null;
-
-                Setting index = id == 1 ? Setting.Main : Setting.Sub;
-
-                MenkoSetting newData = new()
-                {
-                    id = id,
-                    index = index
-                };
-                return newData;
-            });
-            return newMenkoSetting.Where(data => data != null).ToList();
-        }
-
         public bool CheckAllAchievementOpen()
         {
             return !MenkoAchievements.Exists(a => a.isOpen == false);
         }
 
-        public void UpdateMenkoSetting(Setting index, int updateId)
+        public void UpdateMenkoSetting(int updateId)
         {
-            MenkoSetting MenkoSetting = MenkoSettings.Find(match: a => a.index == index);
-            MenkoSetting.UpdateMenkoId(updateId);
+            SetMenkoId = updateId;
         }
 
         public void UpdateMenkoAchievement(int id, bool updateBool)
@@ -75,18 +54,6 @@ namespace Menko.PlayerData
         {
             MenkoAchievement MenkoAchievement = MenkoAchievements.Find(match: a => a.id == id);
             return MenkoAchievement;
-        }
-
-        public MenkoSetting GetMenkoSettingById(int id)
-        {
-            MenkoSetting MenkoSetting = MenkoSettings.Find(match: a => a.id == id);
-            return MenkoSetting;
-        }
-
-        public MenkoSetting GetMenkoSettingByIndex(Setting index)
-        {
-            MenkoSetting MenkoSetting = MenkoSettings.Find(match: a => a.index == index);
-            return MenkoSetting;
         }
     }
 
@@ -101,24 +68,4 @@ namespace Menko.PlayerData
             this.isOpen = isOpen;
         }
     }
-
-    [System.Serializable]
-    public class MenkoSetting
-    {
-        public Setting index; // 1: ÉÅÉCÉì | 2: ÉTÉu
-        public int id; // éØï MenkoID
-
-        public void UpdateMenkoId(int id)
-        {
-            this.id = id;
-        }
-    }
-
-    [System.Serializable]
-    public enum Setting
-    {
-        Main = 1,
-        Sub = 2,
-    }
-
 }

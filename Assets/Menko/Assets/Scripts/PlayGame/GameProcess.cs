@@ -10,6 +10,7 @@ public class GameProcess : MonoBehaviour
 
     public ProcessState ProcessState = ProcessState.Init;
     public BattleUserType BattleTurn = BattleUserType.Player;
+    public MenkoData StageMenko;
     public List<BattleUserState> BattleUsers;
 
     private ProcessInit ProcessInit;
