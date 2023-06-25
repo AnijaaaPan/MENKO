@@ -641,6 +641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 89547547}
+  - component: {fileID: 89547548}
   m_Layer: 12
   m_Name: Main Preview Menko
   m_TagString: Untagged
@@ -666,6 +667,24 @@ Transform:
   m_Father: {fileID: 1447223352}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &89547548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89547546}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 1.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &93124120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,6 +1952,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6042120580447165705, guid: 70ed10c2e8d8998449ec585e9368bdd0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 309894098}
+    - targetCorrespondingSourceObject: {fileID: 6042120580447165705, guid: 70ed10c2e8d8998449ec585e9368bdd0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 309894099}
   m_SourcePrefab: {fileID: 100100000, guid: 70ed10c2e8d8998449ec585e9368bdd0, type: 3}
 --- !u!4 &171463363 stripped
 Transform:
@@ -3465,8 +3487,6 @@ MonoBehaviour:
   TitleMenkoObjects: {fileID: 683540027}
   InGameMenkoObjects: {fileID: 441093469}
   InitMenkoObject: {fileID: 1117142015}
-  PlayerOutlineMaterial: {fileID: 2100000, guid: 494af2d9c02b8e441aa7b79bdd65c62d, type: 2}
-  CPUOutlineMaterial: {fileID: 2100000, guid: 16a6fbc4a7c483046b1f27b4bbf6dc5b, type: 2}
   CameraRing: {fileID: 482915622}
 --- !u!1001 &284791522
 PrefabInstance:
@@ -3796,6 +3816,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e780c9a3d5c6943468b3523c95768345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &309894099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309894097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &323669058
 GameObject:
   m_ObjectHideFlags: 0
@@ -4216,6 +4254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 380334989}
+  - component: {fileID: 380334990}
   m_Layer: 12
   m_Name: Sub Preview Menko
   m_TagString: Untagged
@@ -4241,6 +4280,24 @@ Transform:
   m_Father: {fileID: 108006570}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &380334990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380334988}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 1.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &384426051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14784,6 +14841,8 @@ MonoBehaviour:
   MenkoDataBase: {fileID: 11400000, guid: 75f9a309e8c4c204c93842661561ffe0, type: 2}
   MainPreviewObject: {fileID: 89547546}
   SubPreviewObject: {fileID: 380334988}
+  MainPreviewOutline: {fileID: 89547548}
+  SubPreviewOutline: {fileID: 380334990}
 --- !u!1 &1447223351
 GameObject:
   m_ObjectHideFlags: 0

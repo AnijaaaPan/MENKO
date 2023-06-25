@@ -10,6 +10,9 @@ public class SetMenko : MonoBehaviour
     public GameObject MainPreviewObject;
     public GameObject SubPreviewObject;
 
+    public Outline MainPreviewOutline;
+    public Outline SubPreviewOutline;
+
     private void Start()
     {
         UpdatePreviewMenko(Setting.Main);
@@ -22,6 +25,7 @@ public class SetMenko : MonoBehaviour
         MenkoSetting menkoSetting = playerData.GetMenkoSettingByIndex(setId);
         MenkoData menkoData = MenkoDataBase.GetMenko(menkoSetting.id);
         UpdatePreviewObject(menkoData, setId);
+        UpdateOutline(setId);
     }
 
     private GameObject FindObject(GameObject parent, string name)
@@ -120,6 +124,20 @@ public class SetMenko : MonoBehaviour
             float newY = MenkoId == 3 ? 3500 : 1500;
             float newZ = previewMenkoObject.transform.localScale.z;
             previewMenkoObject.transform.localScale = new Vector3(newX, newY, newZ);
+        }
+    }
+
+    private void UpdateOutline(Setting setId)
+    {
+        if (setId == Setting.Main)
+        {
+            MainPreviewOutline.enabled = false;
+            MainPreviewOutline.enabled = true;
+        }
+        else
+        {
+            SubPreviewOutline.enabled = false;
+            SubPreviewOutline.enabled = true;
         }
     }
 }
