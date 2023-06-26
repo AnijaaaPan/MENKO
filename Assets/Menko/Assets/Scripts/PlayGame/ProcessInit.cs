@@ -30,8 +30,6 @@ public class ProcessInit : MonoBehaviour
         FadeInOutImage.instance.isTitle = false;
         await FadeInOutImage.instance.FadeInOut(false, 0.01f, 15);
 
-        CameraRing.WaitStart();
-
         TitleMenkoObjects.SetActive(false);
         InGameMenkoObjects.SetActive(true);
         SetBattleMenko();
@@ -93,6 +91,7 @@ public class ProcessInit : MonoBehaviour
         MenkoMesh.Update(MenkoObject, stageMenkoData);
 
         Outline MenkoOutline = MenkoObject.AddComponent<Outline>();
+        MenkoOutline.OutlineMode = Outline.Mode.OutlineVisible;
         MenkoOutline.OutlineColor = new(1, 1, 1, 0.75f);
         MenkoOutline.OutlineWidth = 2.5f;
 

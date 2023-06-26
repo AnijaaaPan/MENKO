@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Initialize : MonoBehaviour
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    public static void RuntimeInitializeApplication()
+    private void Start()
     {
         Application.targetFrameRate = 60;
     }

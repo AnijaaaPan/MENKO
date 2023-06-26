@@ -27,6 +27,7 @@ public class ProcessWaitStart : MonoBehaviour
         bool isJoyStickActive = JoyStickObject.activeInHierarchy;
         if (!isJoyStickActive) return;
 
+        CameraRing.instance.Stop();
         GameProcess.instance.UpdateProcessFallPointAndPower();
     }
 
@@ -36,6 +37,7 @@ public class ProcessWaitStart : MonoBehaviour
         UpdateUserMenkoPreview();
 
         InGameUIObject.SetActive(true);
+        CameraRing.instance.WaitStart();
     }
 
     private void UpdateBattleUsers()

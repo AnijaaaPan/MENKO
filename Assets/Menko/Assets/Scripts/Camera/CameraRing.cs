@@ -11,10 +11,10 @@ public class CameraRing : MonoBehaviour
     private int MoveYaw = 0; // 0: âΩÇ‡Ç»Çµ, 1: éûåvâÒÇË, 2: îΩéûåvâÒÇË
     private int MovePadding = 0; // 0: âΩÇ‡Ç»Çµ, 1: ägëÂ, 2: èkè¨
 
-    private readonly float PitchMin = 20f;
-    private readonly float PitchMax = 85f;
-    private readonly float YawMin = 0f;
-    private readonly float YawMax = 360f;
+    private float PitchMin = 20f;
+    private float PitchMax = 85f;
+    private float YawMin = 0f;
+    private float YawMax = 360f;
     private float PaddingMin = 6.5f;
     private float PaddingMax = 12.5f;
     private float DiffPaddingMax = 0.05f;
@@ -134,7 +134,10 @@ public class CameraRing : MonoBehaviour
 
     public void WaitStart()
     {
-        PaddingMax = 10f;
+        PaddingMax = 12.5f;
+        PaddingMin = 10;
+        PitchMax = 90f;
+        PitchMin = 75f;
     }
 
     public void Stop()
