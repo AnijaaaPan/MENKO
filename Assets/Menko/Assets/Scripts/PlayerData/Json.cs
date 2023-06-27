@@ -1,4 +1,5 @@
 ﻿using Menko.PlayerData;
+using Menko.ScriptableObjects;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;

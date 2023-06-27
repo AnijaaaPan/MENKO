@@ -1,5 +1,6 @@
 using Menko.GameProcess;
 using Menko.PlayerData;
+using Menko.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,16 @@ public class GameProcess : MonoBehaviour
     public static GameProcess instance;
     public CameraMultiTarget cameraMultiTarget;
     public MenkoDataBase MenkoDataBase;
+    public CameraMenko CameraMenko;
+    public CameraRing CameraRing;
 
     public ProcessState ProcessState = ProcessState.Init;
     public BattleUserType BattleTurn = BattleUserType.Player;
     public MenkoData StageMenko;
     public List<BattleUserState> BattleUsers;
+
+    public Vector3 FallPointPos;
+    public float PowerMeterValue;
 
     private ProcessInit ProcessInit;
     private ProcessWaitStart ProcessWaitStart;
@@ -43,6 +49,16 @@ public class GameProcess : MonoBehaviour
         UpdateProcessInit();
     }
 
+    public bool IsPlayerTurn()
+    {
+        return BattleTurn == BattleUserType.Player;
+    }
+
+    public BattleUserState GetBattleUserState()
+    {
+        return BattleUsers.Find(user => user.UserType == BattleTurn);
+    }
+
     public MenkoData GetRandomMenkoObject(bool isAll = false)
     {
         PlayerData playerData = Json.instance.Load();
@@ -64,6 +80,18 @@ public class GameProcess : MonoBehaviour
     public void InitSetCameraObject(GameObject[] Objects)
     {
         cameraMultiTarget.SetTargets(Objects);
+    }
+
+    public void EnableCameraMenko()
+    {
+        CameraMenko.enabled = true;
+        CameraRing.enabled = false;
+    }
+
+    public void EnableCameraRing()
+    {
+        CameraMenko.enabled = false;
+        CameraRing.enabled = true;
     }
 
     public void UpdateProcessInit()
@@ -100,4 +128,12 @@ public class GameProcess : MonoBehaviour
         ProcessMenkoFalling.Run();
     }
 
+    public void UpdateProcessMenkoFallEnd()
+    {
+        ProcessMenkoFalling.enabled = false;
+
+        ProcessState = ProcessState.MenkoFallEnd;
+        ProcessMenkoFallEnd.enabled = true;
+        ProcessMenkoFallEnd.Run();
+    }
 }

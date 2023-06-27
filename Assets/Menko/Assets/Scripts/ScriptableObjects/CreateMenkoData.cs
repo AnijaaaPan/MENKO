@@ -1,32 +1,36 @@
 using Menko.Enums;
 using UnityEngine;
 
-// Menkoデータ
-[CreateAssetMenu(fileName = "CreateMenkoData", menuName = "ScriptableObjects/CreateMenkoData")]
-public class MenkoData : ScriptableObject
+namespace Menko.ScriptableObjects
 {
-    [SerializeField]
-    int id;
+    // Menkoデータ
+    [CreateAssetMenu(fileName = "CreateMenkoData", menuName = "ScriptableObjects/CreateMenkoData")]
+    public class MenkoData : ScriptableObject
+    {
+        [SerializeField]
+        int id;
 
-    [SerializeField]
-    Rank rank;
+        [SerializeField]
+        Rank rank;
 
-    [SerializeField]
-    GameObject prefab;
+        [SerializeField]
+        GameObject prefab;
 
-    [SerializeField]
-    Material material;
+        [SerializeField]
+        Material material;
 
-    [SerializeField]
-    bool isAutoMosaic;
+        [SerializeField]
+        bool isAutoMosaic;
 
-    public int GetId() => id;
+        public int GetId() => id;
 
-    public GameObject GetPrefab() => prefab;
+        public GameObject GetPrefab() => prefab;
 
-    public Material GetMaterial() => material;
+        public Material GetMaterial() => material;
 
-    public Rank GetRank() => rank;
+        public Rank GetRank() => rank;
 
-    public bool GetIsAutoMosaic() => isAutoMosaic;
+        public bool GetIsAutoMosaic() => isAutoMosaic;
+    }
+
 }

@@ -1,4 +1,5 @@
-using Menko.UpdateMenko;
+using Menko.MenkoData;
+using Menko.ScriptableObjects;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -24,6 +25,11 @@ public class ProcessInit : MonoBehaviour
     GameObject BattleReadyCanvasObject;
 
     private float time;
+
+    private void Start()
+    {
+
+    }
 
     public async void Run()
     {
@@ -59,7 +65,7 @@ public class ProcessInit : MonoBehaviour
         {
             string addText = new('.', i);
             BattleReadyText.text = $"{initText}{addText}";
-            await Task.Delay(750);
+            await Task.Delay(500);
         }
 
         BattleReadyText.text = "Fight";

@@ -23,6 +23,6 @@ namespace Menko.GameProcess
     public class BattleUserState
     {
         public BattleUserType UserType;
-        public MenkoData SetMenkoData;
+        public ScriptableObjects.MenkoData SetMenkoData;
     }
 }

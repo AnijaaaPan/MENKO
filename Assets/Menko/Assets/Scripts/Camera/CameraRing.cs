@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine;
 
 public class CameraRing : MonoBehaviour
 {
@@ -11,8 +11,8 @@ public class CameraRing : MonoBehaviour
     private int MoveYaw = 0; // 0: âΩÇ‡Ç»Çµ, 1: éûåvâÒÇË, 2: îΩéûåvâÒÇË
     private int MovePadding = 0; // 0: âΩÇ‡Ç»Çµ, 1: ägëÂ, 2: èkè¨
 
-    private float PitchMin = 20f;
-    private float PitchMax = 85f;
+    private float PitchMin = 35f;
+    private float PitchMax = 75f;
     private float YawMin = 0f;
     private float YawMax = 360f;
     private float PaddingMin = 6.5f;
@@ -132,14 +132,6 @@ public class CameraRing : MonoBehaviour
         else if (cameraMultiTarget.PaddingDown <= PaddingMin) MovePadding = 1;
     }
 
-    public void WaitStart()
-    {
-        PaddingMax = 12.5f;
-        PaddingMin = 10;
-        PitchMax = 90f;
-        PitchMin = 75f;
-    }
-
     public void Stop()
     {
         IsStop = true;
@@ -148,5 +140,29 @@ public class CameraRing : MonoBehaviour
     public void ReStart()
     {
         IsStop = false;
+        UpdateCamera();
+    }
+
+    public void WaitStart()
+    {
+        PaddingMax = 12.5f;
+        PaddingMin = 10;
+        PitchMax = 45;
+        PitchMin = 35;
+        InitCount = 1;
+        RandomCount = 1;
+    }
+
+    public void ResetCameraMove()
+    {
+        PitchMin = 35f;
+        PitchMax = 75f;
+        YawMin = 0f;
+        YawMax = 360f;
+        PaddingMin = 6.5f;
+        PaddingMax = 12.5f;
+        DiffPaddingMax = 0.05f;
+        InitCount = 1;
+        RandomCount = 1;
     }
 }

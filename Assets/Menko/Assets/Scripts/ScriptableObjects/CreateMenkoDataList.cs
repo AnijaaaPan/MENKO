@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CreateMenkoDataBase", menuName = "ScriptableObjects/CreateMenkoDataBase")]
-public class MenkoDataBase : ScriptableObject
+namespace Menko.ScriptableObjects
 {
-    [SerializeField]
-    private List<MenkoData> menkoDatas = new();
-
-    public List<MenkoData> GetMenkos()
+    [CreateAssetMenu(fileName = "CreateMenkoDataBase", menuName = "ScriptableObjects/CreateMenkoDataBase")]
+    public class MenkoDataBase : ScriptableObject
     {
-        return menkoDatas;
-    }
+        [SerializeField]
+        private List<MenkoData> menkoDatas = new();
 
-    public MenkoData GetMenko(int id)
-    {
-        return menkoDatas.Find(Menko => Menko.GetId() == id);
+        public List<MenkoData> GetMenkos()
+        {
+            return menkoDatas;
+        }
+
+        public MenkoData GetMenko(int id)
+        {
+            return menkoDatas.Find(Menko => Menko.GetId() == id);
+        }
     }
 }

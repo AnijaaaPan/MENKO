@@ -1,6 +1,6 @@
+using Menko.Enums;
 using System.Collections.Generic;
 using System.Linq;
-using Menko.Enums;
 
 namespace Menko.PlayerData
 {
@@ -10,7 +10,7 @@ namespace Menko.PlayerData
         public int SetMenkoId;
         public List<MenkoAchievement> MenkoAchievements;
 
-        public static PlayerData Init(List<MenkoData> MenkoDatas)
+        public static PlayerData Init(List<ScriptableObjects.MenkoData> MenkoDatas)
         {
             PlayerData newPlayerData = new()
             {
@@ -20,7 +20,7 @@ namespace Menko.PlayerData
             return newPlayerData;
         }
 
-        private static List<MenkoAchievement> InitMenkoAchievements(List<MenkoData> MenkoDatas)
+        private static List<MenkoAchievement> InitMenkoAchievements(List<ScriptableObjects.MenkoData> MenkoDatas)
         {
             IEnumerable<MenkoAchievement> newMenkoAchievements = MenkoDatas.Select(data =>
             {

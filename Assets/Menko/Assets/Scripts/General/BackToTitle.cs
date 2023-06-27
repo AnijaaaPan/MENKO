@@ -1,7 +1,7 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
 
 public class BackToTitle : MonoBehaviour, IPointerClickHandler
 {

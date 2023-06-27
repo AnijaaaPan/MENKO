@@ -14,9 +14,9 @@ public class PointerAnimation : MonoBehaviour
 
     private void Update()
     {
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, nowPosZ + Mathf.PingPong(Time.time / 5, 0.5f));
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, nowPosZ - Mathf.PingPong(Time.time / 300, 0.0075f));
 
-        var addRotation = Quaternion.Euler(0, 7.5f, 0f);
+        Quaternion addRotation = Quaternion.Euler(0, 5f, 0f);
         rb.MoveRotation(rb.rotation * addRotation);
     }
 }

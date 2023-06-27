@@ -1,5 +1,6 @@
+using Menko.MenkoData;
 using Menko.PlayerData;
-using Menko.UpdateMenko;
+using Menko.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
