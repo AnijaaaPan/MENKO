@@ -24,6 +24,9 @@ public class ProcessInit : MonoBehaviour
     [SerializeField]
     GameObject BattleReadyCanvasObject;
 
+    [SerializeField]
+    Transform InitFieldMenkoTransform;
+
     private float time;
 
     private void Start()
@@ -100,6 +103,9 @@ public class ProcessInit : MonoBehaviour
         MenkoOutline.OutlineMode = Outline.Mode.OutlineVisible;
         MenkoOutline.OutlineColor = new(1, 1, 1, 0.75f);
         MenkoOutline.OutlineWidth = 2.5f;
+
+        UpdateMenkoLayer UpdateMenkoLayer = MenkoObject.AddComponent<UpdateMenkoLayer>();
+        UpdateMenkoLayer.InitFieldMenkoTransform = InitFieldMenkoTransform;
 
         MenkoObject.SetActive(true);
         MenkoObject.transform.SetParent(InGameMenkoObjects.transform, false);

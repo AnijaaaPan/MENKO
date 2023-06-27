@@ -1,8 +1,13 @@
 using UnityEngine;
 
-public class ProcessWaitNextRound : MonoBehaviour
+public class ProcessNextRound : MonoBehaviour
 {
-    public void Run()
+    private void Start()
+    {
+
+    }
+
+    public void Run(bool isReset)
     {
 
     }

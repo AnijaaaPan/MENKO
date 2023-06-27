@@ -6,8 +6,14 @@ using UnityEngine;
 
 public class ProcessMenkoFalling : MonoBehaviour
 {
-    public GameObject InGameMenkoObjects;
-    public Cinemachine.CinemachineImpulseSource CinemachineImpulseSource;
+    [SerializeField]
+    GameObject InGameMenkoObjects;
+
+    [SerializeField]
+    Cinemachine.CinemachineImpulseSource CinemachineImpulseSource;
+
+    [SerializeField]
+    Transform InitFieldMenkoTransform;
 
     private GameObject FallMenkoObject = null;
 
@@ -53,6 +59,9 @@ public class ProcessMenkoFalling : MonoBehaviour
 
         ShockWave MenkoShockWave = MenkoObject.AddComponent<ShockWave>();
         MenkoShockWave.CinemachineImpulseSource = CinemachineImpulseSource;
+
+        UpdateMenkoLayer UpdateMenkoLayer = MenkoObject.AddComponent<UpdateMenkoLayer>();
+        UpdateMenkoLayer.InitFieldMenkoTransform = InitFieldMenkoTransform;
 
         MenkoObject.SetActive(true);
         MenkoObject.transform.SetParent(InGameMenkoObjects.transform, false);

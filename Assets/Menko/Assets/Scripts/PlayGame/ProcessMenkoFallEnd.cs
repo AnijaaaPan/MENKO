@@ -1,3 +1,4 @@
+using Menko.GameProcess;
 using Menko.MenkoData;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -14,23 +15,16 @@ public class ProcessMenkoFallEnd : MonoBehaviour
     GameObject ScanPanelObject;
 
     private bool isAllMenkoSleep = false;
-    private bool isCheckMenkoFlip = false;
 
     private async void Update()
     {
-        if (!isAllMenkoSleep)
-        {
-            isAllMenkoSleep = CheckIsMenkoSleep();
-            return;
-        }
+        if (isAllMenkoSleep) return;
 
-        if (!isCheckMenkoFlip)
-        {
-            isCheckMenkoFlip = true;
-            await ScanMenko();
-            // CheckAllMenkoFlip();
-            return;
-        }
+        isAllMenkoSleep = CheckIsMenkoSleep();
+        if (!isAllMenkoSleep) return;
+
+        ScanMenkoData ScanMenkoData = await ScanMenko();
+        EndGameOrNextRound(ScanMenkoData);
     }
 
     public void Run()
@@ -70,10 +64,51 @@ public class ProcessMenkoFallEnd : MonoBehaviour
         return scaneMenko.ScanMenkoData;
     }
 
-    private void CheckAllMenkoFlip()
+    private void EndGameOrNextRound(ScanMenkoData ScanMenkoData)
     {
-        GameObject StageMenkoObject = InGameMenkoTransform.Find("StageMenko").gameObject;
-        GameObject UserMenkoObject = InGameMenkoTransform.Find("UserMenko").gameObject;
+        bool isStageMenkoFlip = ScanMenkoData.StageMenkoType == ScanMenkoType.Down;
+        bool isStageMenkoNone = ScanMenkoData.StageMenkoType == ScanMenkoType.None;
+        bool isUserMenkoFlip = ScanMenkoData.UserMenkoType == ScanMenkoType.Down;
+        bool isUserMenkoNone = ScanMenkoData.UserMenkoType == ScanMenkoType.None;
 
+        if (IsResetNextRound(isStageMenkoFlip, isStageMenkoNone, isUserMenkoFlip, isUserMenkoNone))
+        {
+            GameProcess.instance.UpdateProcessNextRound(true);
+            return;
+        }
+
+        BattleUserType? WinUserType = GetWinUserType(isStageMenkoFlip, isStageMenkoNone, isUserMenkoFlip, isUserMenkoNone);
+        if (WinUserType != null)
+        {
+            GameProcess.instance.UpdateProcessEndGame(WinUserType.Value);
+            return;
+        }
+
+        GameProcess.instance.UpdateProcessNextRound();
+    }
+
+    private bool IsResetNextRound(bool isStageFlip, bool isStageNone, bool isUserFlip, bool isUserNone)
+    {
+        if (isStageFlip && isUserFlip) return true;
+        if (isStageNone && isUserNone) return true;
+        if (isStageFlip && isUserNone) return true;
+        if (isStageNone && isUserFlip) return true;
+        return false;
+    }
+
+    private BattleUserType? GetWinUserType(bool isStageFlip, bool isStageNone, bool isUserFlip, bool isUserNone)
+    {
+        if (isUserFlip || isUserNone)
+        {
+            return BattleUserType.Stage;
+        }
+        else if (isStageFlip || isStageNone)
+        {
+            return GameProcess.instance.BattleTurn;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

@@ -1,5 +1,5 @@
 {
-    "SetMenkoId": 1,
+    "SetMenkoId": 17,
     "MenkoAchievements": [
         {
             "id": 1,
@@ -19,7 +19,7 @@
         },
         {
             "id": 5,
-            "isOpen": false
+            "isOpen": true
         },
         {
             "id": 6,
@@ -35,7 +35,7 @@
         },
         {
             "id": 9,
-            "isOpen": false
+            "isOpen": true
         },
         {
             "id": 10,
@@ -47,7 +47,7 @@
         },
         {
             "id": 12,
-            "isOpen": false
+            "isOpen": true
         },
         {
             "id": 13,
@@ -55,11 +55,11 @@
         },
         {
             "id": 14,
-            "isOpen": false
+            "isOpen": true
         },
         {
             "id": 15,
-            "isOpen": false
+            "isOpen": true
         },
         {
             "id": 16,
@@ -67,7 +67,7 @@
         },
         {
             "id": 17,
-            "isOpen": false
+            "isOpen": true
         },
         {
             "id": 18,
@@ -75,3 +75,8 @@
         }
     ]
 }
+
+
+
+
+

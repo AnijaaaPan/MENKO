@@ -15,6 +15,7 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
     public GameObject SetMenkoObject;
     public GameObject PlayerPreviewObject;
     public GameObject CPUPreviewObject;
+    public GameObject EndPreviewObject;
 
     private float initLeftX = -1575;
     private float initRightX = 1575;
@@ -64,6 +65,7 @@ public class BackToTitle : MonoBehaviour, IPointerClickHandler
 
         PlayerPreviewObject.GetComponent<Outline>().enabled = false;
         CPUPreviewObject.GetComponent<Outline>().enabled = false;
+        EndPreviewObject.GetComponent<Outline>().enabled = false;
     }
 
     private void OptionZoomOut(float positionZ, float colorAlpha)

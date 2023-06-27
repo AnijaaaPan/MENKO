@@ -3,15 +3,26 @@ using UnityEngine.UI;
 
 public class ProcessFallPointAndPower : MonoBehaviour
 {
-    public GameObject JoyStickObject;
-    public GameObject FallPointerCanvasObject;
-    public GameObject FallPointerObject;
+    [SerializeField]
+    GameObject JoyStickObject;
 
-    public GameObject PointImageObject;
-    public GameObject PowerMeterObject;
-    public Image powerMeterImage;
+    [SerializeField]
+    GameObject FallPointerCanvasObject;
 
-    public FloatingJoystick InputMove; //ç∂âÊñ JoyStick
+    [SerializeField]
+    GameObject FallPointerObject;
+
+    [SerializeField]
+    GameObject PointImageObject;
+
+    [SerializeField]
+    GameObject PowerMeterObject;
+
+    [SerializeField]
+    Image powerMeterImage;
+
+    [SerializeField]
+    FloatingJoystick InputMove; //ç∂âÊñ JoyStick
 
     private Rigidbody FallPointerCanvasRigidbody;
     private Rigidbody FallPointerRigidbody;

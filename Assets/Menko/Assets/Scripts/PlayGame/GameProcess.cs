@@ -25,7 +25,7 @@ public class GameProcess : MonoBehaviour
     private ProcessFallPointAndPower ProcessFallPointAndPower;
     private ProcessMenkoFalling ProcessMenkoFalling;
     private ProcessMenkoFallEnd ProcessMenkoFallEnd;
-    private ProcessWaitNextRound ProcessWaitNextRound;
+    private ProcessNextRound ProcessNextRound;
     private ProcessEndGame ProcessEndGame;
 
     private void Awake()
@@ -43,7 +43,7 @@ public class GameProcess : MonoBehaviour
         ProcessFallPointAndPower = GetComponent<ProcessFallPointAndPower>();
         ProcessMenkoFalling = GetComponent<ProcessMenkoFalling>();
         ProcessMenkoFallEnd = GetComponent<ProcessMenkoFallEnd>();
-        ProcessWaitNextRound = GetComponent<ProcessWaitNextRound>();
+        ProcessNextRound = GetComponent<ProcessNextRound>();
         ProcessEndGame = GetComponent<ProcessEndGame>();
 
         UpdateProcessInit();
@@ -135,5 +135,23 @@ public class GameProcess : MonoBehaviour
         ProcessState = ProcessState.MenkoFallEnd;
         ProcessMenkoFallEnd.enabled = true;
         ProcessMenkoFallEnd.Run();
+    }
+
+    public void UpdateProcessNextRound(bool isReset = false)
+    {
+        ProcessMenkoFallEnd.enabled = false;
+
+        ProcessState = ProcessState.NextRound;
+        ProcessNextRound.enabled = true;
+        ProcessNextRound.Run(isReset);
+    }
+
+    public void UpdateProcessEndGame(BattleUserType WinUserType)
+    {
+        ProcessMenkoFallEnd.enabled = false;
+
+        ProcessState = ProcessState.EndGame;
+        ProcessEndGame.enabled = true;
+        ProcessEndGame.Run(WinUserType);
     }
 }

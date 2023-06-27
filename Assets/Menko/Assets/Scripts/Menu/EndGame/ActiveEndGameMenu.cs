@@ -1,16 +1,13 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ActiveInGameMenu : MonoBehaviour
+public class ActiveEndGameMenu : MonoBehaviour
 {
     [SerializeField]
     RectTransform OptionTransform;
 
     [SerializeField]
     CanvasGroup OptionCanvas;
-
-    [SerializeField]
-    GameObject BattleUsersObject;
 
     async void Start()
     {
@@ -21,8 +18,6 @@ public class ActiveInGameMenu : MonoBehaviour
             OptionZoomOut(-30 + i * 3, i * 0.1f);
             await Task.Delay(20);
         }
-
-        BattleUsersObject.SetActive(true);
     }
 
     private void OptionZoomOut(int positionZ, float colorAlpha)

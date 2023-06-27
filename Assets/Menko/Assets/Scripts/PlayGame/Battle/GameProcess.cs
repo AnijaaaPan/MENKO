@@ -8,7 +8,7 @@ namespace Menko.GameProcess
         FallPointAndPower,
         MenkoFalling,
         MenkoFallEnd,
-        WaitNextRound,
+        NextRound,
         EndGame
     }
 
@@ -16,7 +16,8 @@ namespace Menko.GameProcess
     public enum BattleUserType
     {
         Player,
-        CPU
+        CPU,
+        Stage
     }
 
     [System.Serializable]

@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class ProcessWaitStart : MonoBehaviour
 {
-
     [SerializeField]
     GameObject PlayerMenkoPreview;
 

@@ -11,7 +11,7 @@ public class ScaneMenko : MonoBehaviour
 
     public ScanMenkoData ScanMenkoData = new();
 
-    private const float Radius = 10f; //ˆÚ“®o—ˆ‚é”ÍˆÍ
+    private const float Radius = 10.5f; //ˆÚ“®o—ˆ‚é”ÍˆÍ
 
     void OnTriggerEnter(Collider collision)
     {
